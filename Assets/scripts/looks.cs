@@ -14,6 +14,7 @@ public class looks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         
     }
 
@@ -24,6 +25,8 @@ public class looks : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y")*Time.deltaTime*mouseSensitivity;
 
         xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
 
         transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
         playerBody.Rotate(Vector3.up * mouseX);
